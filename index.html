@@ -69,6 +69,12 @@
             }
         }
 
+        @media only screen and (max-width: 768px) {
+            .side2 {
+            height: 300px;
+        }
+        }
+
         @media only screen and (max-width: 670px) {
             .overlay {
                 width: 100%;
@@ -77,6 +83,19 @@
 
             .line:nth-child(1) {
                 font-size: 3rem;
+            }
+            .line:nth-child(2) {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media only screen and (max-width: 350px) {
+
+            .line:nth-child(1) {
+                font-size: 2rem;
+            }
+            .line:nth-child(2) {
+                font-size: 1rem;
             }
         }
 
@@ -130,11 +149,12 @@
                 <div class="typing-animation line" style="animation-delay: 2.5s;">
                     Navigating the Heat of Online Conversations
                 </div>
+                <a href="secondpage.html"><button type="button" class="btn btn-success learnMore text-center w-25 m-auto opacity-100 py-1">Learn More!</button></a>
             </div>
             <div class="w-100 landing" alt=""></div>
         </div>
         <div class="row h-75" style="background-color: #f8d9c6">
-            <div class="col p-5 ">
+            <div class="col-md-6 col-12 p-5 order-md-1 order-2">
                 <span class="fw-bold">Flaming</span>: Online 'fighting' by posing negative messages with anger and/or
                 vulgarities on message boards (such as those on gaming sites or blogs).
                 <hr>
@@ -147,7 +167,7 @@
                 provoke and specialize in targeting specific aspects of controversial
                 discussions.
             </div>
-            <div class="col side2">
+            <div class="col-md-6 col-12 side2 order-md-2 order-1">
             </div>
         </div>
         <div class="h-75 m-auto w-100 text-center" style="background-color: #ffb57d;"><img src="images/logo.png" alt="/">
@@ -161,12 +181,16 @@
 </body>
 
 <script>
+    const learnMore = document.querySelector(".learnMore");
+    learnMore.style.display = "none";
+
     document.addEventListener("DOMContentLoaded", () => {
         const firstLine = document.querySelector(".line:nth-child(1)");
         const secondLine = document.querySelector(".line:nth-child(2)");
 
         firstLine.addEventListener("animationend", () => {
             secondLine.style.display = "block";
+            learnMore.style.display = "block";
             secondLine.style.animation =
                 "typing 3s steps(50, end) forwards, blink 1s step-end infinite";
         });
