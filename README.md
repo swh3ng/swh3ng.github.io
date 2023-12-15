@@ -1,1 +1,1 @@
-https://swh3ng.github.io/index.html
+https://swh3ng.github.io
