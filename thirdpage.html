@@ -26,6 +26,17 @@
     .nav {
       background-color: #FB9649;
     }
+    .card {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
 
     </style>
 </head>
@@ -210,6 +221,22 @@
   <p>Copyright &copy; FlameBusters</p>
 </footer>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.5 }); // Adjust threshold as needed
+
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+      observer.observe(card);
+    });
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
 integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
