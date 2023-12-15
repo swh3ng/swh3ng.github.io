@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #F8D9C6;
+        }
+
+        .headerImg { 
+            width: 100%;
+            background: url("images/quizImage.jpg") no-repeat center;
+            color: white;
+            height: 200px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #quiz-container {
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="headerImg">
+            <h1 class="text-center">Test Your Internet Flaming Knowledge!</h1>
+        </div>
+        <div id="quiz-container" class="mt-5 bg-light p-4 pt-2 border border-dark">
+
+            <div class="w-100 m-auto">
+            <dotlottie-player src="https://lottie.host/69f9244f-af1d-4bf0-aeb8-7072b2968162/i40OlSKTlz.json"
+                background="transparent" speed="1.5" style="width: 200px; height: 200px;" loop class="w-100"
+                autoplay></dotlottie-player>
+            </div>
+            <h2 id="question">Question text here</h2>
+            <div id="options" class="mb-3">
+                <!-- Options will be loaded here -->
+            </div>
+            <button id="next-button" class="btn btn-primary">Next Question</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const questions = [
+            {
+                question: "What is Internet Flaming?",
+                options: ["Shopping online", "Sending polite and helpful messages", "Posting hostile or insulting messages online", "Researching on the Internet"],
+                answer: "Posting hostile or insulting messages online"
+            },
+            {
+                question: "Which of the following is a common cause of flaming on social media?",
+                options: ["Miscommunication or misunderstanding", "Technical issues", "Fast internet speeds", "High-quality content"],
+                answer: "Miscommunication or misunderstanding"
+            },
+            {
+                question: "What effect can Internet flaming have on online communities?",
+                options: ["It can enhance constructive discussions", "It can lead to a more friendly environment", "It can discourage new members from participating", "It improves the accuracy of information shared"],
+                answer: "It can discourage new members from participating"
+            },
+            {
+                question: "How should one ideally respond to a flame message?",
+                options: ["With another flame message", "Ignoring or calmly addressing the issue", "By sharing the message with friends", "By immediately deleting one's account"],
+                answer: "Ignoring or calmly addressing the issue"
+            },
+            {
+                question: "Which of these is a strategy to prevent flaming in online discussions?",
+                options: ["Encouraging anonymity", "Setting clear rules and guidelines for discussion", "Limiting the time people spend online", "Banning users after one hostile post"],
+                answer: "Setting clear rules and guidelines for discussion"
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const nextButton = document.getElementById('next-button');
+        const quizContainer = document.getElementById('quiz-container');
+
+        function loadQuestion() {
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+            optionsElement.innerHTML = '';
+            currentQuestion.options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('btn', 'btn-info', 'm-2');
+                button.addEventListener('click', () => selectOption(option));
+                optionsElement.appendChild(button);
+            });
+        }
+
+        function selectOption(option) {
+            const currentQuestion = questions[currentQuestionIndex];
+            console.log(option)
+            if (option === currentQuestion.answer) {
+                console.log("Correct Answer")
+                score++;
+            }
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizContainer.innerHTML = `
+            <div class='w-50 m-auto text-center'> 
+            <dotlottie-player src="https://lottie.host/9bc0fb51-1bbd-4be8-8950-fae3bc5c2792/1DoI8LFoSE.json" background="transparent" speed="2" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+            </div>
+            <h2>Your Score: ${score}/${questions.length}</h2>
+            <button onclick="location.reload()" class="btn btn-primary mt-3">Retry Quiz</button>
+        `;
+        }
+
+        nextButton.addEventListener('click', () => {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                nextButton.style.display = 'none';
+                optionsElement.style.display = 'none';
+                showResults();
+            }
+        });
+
+        loadQuestion();
+    });
+
+</script>
+
+</html>
