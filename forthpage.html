@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Techunity challenge</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Silkscreen&display=swap');
+        * {
+            overflow-x: hidden;
+            font-family: Silkscreen;
+        }
         body {
-            padding-top: 20px;
             background-color: #F8D9C6;
             font-family: Silkscreen;
         }
@@ -31,26 +34,30 @@
             margin: auto;
             text-align: center;
         }
+
+        .nav {
+          background-color: #FB9649;
+        }
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg nav">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"><img id="logo" src="./images/logo.png" alt="" height="50"></a>
+          <a class="navbar-brand" href="index.html"><img src="./images/logo.png" alt="" height="50"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="secondpage.html" href="secondpage.html">Introduction</a>
+                <a class="nav-link" aria-current="secondpage.html" href="secondpage.html">Introduction</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="thirdpage.html">Story</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="forthpage.html">Techunity Challenge</a>
+                <a class="nav-link active" href="forthpage.html">Techunity-challenge</a>
               </li>
              
           </div>
